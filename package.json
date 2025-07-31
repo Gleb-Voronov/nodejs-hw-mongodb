@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-hw-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "get-all": "node src/scripts/getAllContacts.js",
+   "count": "node src/scripts/countContacts.js",
+   "remove-all": "node src/scripts/removeAllContacts.js",
+   "remove-last": "node src/scripts/removeLastContact.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gleb-Voronov/nodejs-hw-mongodb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Gleb-Voronov/nodejs-hw-mongodb/issues"
+  },
+  "homepage": "https://github.com/Gleb-Voronov/nodejs-hw-mongodb#readme"
+}
