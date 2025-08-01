@@ -1,16 +1,26 @@
+import express from 'express';
 import dotenv from 'dotenv';
-import { setupServer } from './server.js';
-import initMongoConnection from './db/initMongoConnection.js';
+import contactRoutes from './routes/contactRoutes.js';
+import { initMongoConnection } from './db/initMongoConnection.js';
 
 dotenv.config();
 
-const startServer = async () => {
-  await initMongoConnection();
-  const server = setupServer();
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-  const PORT = process.env.PORT || 3000;
-  server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.use(express.json());
+app.use('/contacts', contactRoutes);
+
+app.use((req, res) => {
+  res.status(404).json({ message: 'Not Found' });
+});
+
+const MONGO_URI = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/${process.env.MONGODB_DB}?retryWrites=true&w=majority`;
+
+const startServer = async () => {
+  await initMongoConnection(MONGO_URI);
+  app.listen(PORT, () => {
+    console.log(` Server running on port ${PORT}`);
   });
 };
 
